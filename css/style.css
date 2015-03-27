@@ -1,0 +1,333 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+@font-face{
+	font-family: Roboto; 
+    src: url(fonts/Roboto-Black.ttf); 
+}
+@font-face{
+	font-family: Roboto-Medium; 
+    src: url(fonts/Roboto-Medium.ttf); 
+}
+@font-face{
+	font-family: Morning; 
+    src: url(fonts/Morning-Star.ttf); 
+}
+body{
+	background-color: #898;
+}
+.content-wrapper{
+	width: 1024px;
+	height: 768px;
+	margin: 0 auto;
+	background-color: #EAEAEA;
+}
+.head-test{
+	height: 104px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
+	margin-bottom: 24px;
+}
+.your{
+	font-size: 14px;
+	font-family: "Roboto";
+	color: #656565;
+	line-height: 1.7;
+	-moz-transform: matrix( 2.54, 0, 0, 2.54, 0, 0);
+	-webkit-transform: matrix( 2.54, 0, 0, 2.54, 0, 0);
+	float: left;
+	position: relative;
+	left: 427px;
+  	top: 46px;
+}
+.test{
+	font-size: 14px;
+	font-family: "Morning";
+	color: rgb( 0, 185, 230 );
+	line-height: 1.7;
+	-moz-transform: matrix( 2.15, 0, 0, 2.15, 0, 0);
+	-webkit-transform: matrix( 2.15, 0, 0, 2.15, 0, 0);
+	float: left;
+	position: relative;
+	left: 480px;
+  	top: 43px;
+}
+.colums, .send-wrapper{
+	border-radius: 4px;
+	background-color: rgb( 255, 255, 255 );
+	box-shadow: 0px 0px 2px 0px rgb( 0, 0, 0 );
+}
+.colums{
+	margin-left: 23px;
+	width: 300px;
+	height: 577px;
+	float: left;
+}
+.colums:first-of-type{
+	margin-left: 41px;
+}
+.colums:last-of-type{
+	margin-left: 26px;
+}
+.colum1-header, .colum2-header, .colum3-header{
+	border-radius: 4px 4px 0 0;
+	height: 141px;
+}
+.colum1-header{
+	background-color: #DB4437;
+}
+.colum2-header{
+	background-color: #00B9E6;
+}
+.colum3-header{
+	background-color: #0F9D58;
+}
+.colum1-header img, .colum2-header img, .colum3-header img{
+	position: relative;
+	top: 43px;
+  	left: 115px;
+}
+.colum3-header img{
+	left: 101px;
+}
+.documents, .links, .science-lab, .colums footer a, .article-name, .authors{
+	-moz-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
+  	-webkit-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
+	font-family: "Roboto-Medium";
+	position: relative;
+}
+.documents, .links, .science-lab{
+	font-size: 18px;
+	color: #FFFFFF;
+	line-height: 1.2;
+	left: -51px;
+	top: 85px;
+}
+.science-lab{
+	left: -55px;
+}
+.colum-content{
+	height: 342px;
+	padding: 29px 0 0 16px;
+	overflow: auto;
+	overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+.colum-content.col-cont1::-webkit-scrollbar-thumb{
+    background: #db4437; 
+}
+.colum-content.col-cont2::-webkit-scrollbar-thumb{
+    background: #00b9e6; 
+}
+.colum-content.col-cont3::-webkit-scrollbar-thumb{
+    background: #0f9d58; 
+}
+.colums footer{
+	clear: both;
+	height: 60px;
+	border-radius: 0 0 4px 4px;
+	border-top:2px solid #E0DEDE;
+}
+.footer1 a{
+	color: #DB4437;
+}
+.footer2 a{
+	color: #00B9E6;
+}
+.footer3 a{
+	color: #0F9D58;
+}
+.colums footer a{
+	font-family: "Roboto";
+	font-size: 15.5px;
+	line-height: 1.5;
+	float: right;
+	margin: 22px 20px 0 0;
+}
+.checkbox input[type="checkbox"]{
+	float: left;
+	margin-left: -20px;
+}
+input[type="checkbox"]{
+	display: none;
+ 	margin: 4px 0 0;
+ 	margin-top: 1px;
+ 	line-height: normal;
+  	cursor: pointer;
+}
+.checkbox li{
+	height: 45px;
+	margin-bottom: 9px;
+}
+.checkbox .check-text{
+	width: 255px;
+	float: right;
+}
+.checkbox label:before{
+	border-radius: 1px;
+}
+.colums label {
+	display: inline-block;
+	cursor: pointer;
+}
+.colums label:before{
+	content: "";
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 1px #8b8b8b solid;
+	margin-top: 6px;
+	float: left;
+	background-color: #ffffff;
+	box-shadow: inset 0px 0px 1px 1px #a0a0a0;
+}
+input[type=checkbox]:checked + label:before{
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 15px;
+}
+.col-cont1 input[type=checkbox]:checked + label:before{
+	background-color: #db4437;
+}
+.col-cont2 input[type=checkbox]:checked + label:before{
+	background-color: #00b9e6;
+}
+.col-cont3 input[type=checkbox]:checked + label:before{
+	background-color: #0f9d58;
+}
+.col-cont2 > .checkbox > label > div{
+	margin-left: 31px;
+}
+.col-cont3 > .checkbox > label > div{
+	margin-left: 30px;
+}
+.article-name{
+	font-size: 13px;
+	color: #8B8B8B;
+	line-height: 1.5;
+	width: 255px;
+ 	margin-left: 21px;
+}
+.authors{
+	font-size: 12.1px;
+	color: #B2B2B2;
+	line-height: 1;
+	width: 255px;
+  	margin-left: 25px;
+  	float: right;
+}
+.send-wrapper{
+	margin: 0 145px;
+	width: 724px;
+	height: 577px;
+}
+.send-wrapper > header{
+	border-radius: 4px 4px 0 0;
+	background-color: #00B9E6;
+	height: 141px;
+}
+.send-wrapper > header img{
+	position: relative;
+	top:47px;
+	left:320px;
+}
+.send-content{
+	padding:22px 30px 0 36px;
+	height: 353px;
+  	border-bottom: 1px #dcdcdc solid;
+  	overflow: auto;
+  	overflow-y: scroll;
+}
+.send-content::-webkit-scrollbar-thumb{
+    background: #00b9e6; 
+}
+.send-content form input{
+	border:none;
+	border-bottom: 2px #BDBDBD solid;
+	font-size: 16.2px;
+  	font-family: "Roboto-Medium";
+	color: #4C4C4C;
+	line-height: 1.4;
+ 	padding-bottom: 8px; 
+}
+.name input, .email input{
+	height: 17px;
+	width: 305px;
+}
+.send-content form input:focus{
+	outline: none;
+	border-bottom: 3px #00b9e6 solid;
+}
+.name{
+	float: left;
+  	width: 304px;
+}
+.email{
+	float: right;
+	width: 304px;
+}
+.name span, .email span{
+	font-size: 12.3px;
+	font-family: "Roboto-Medium";
+	color: #BDBDBD;
+	line-height: 1.9;
+}
+ .message {
+	width: 100%;
+	margin-top: 25px;
+}
+.attached-links {
+	font-size: 18.4px;
+	font-family: "Roboto-Medium";
+	color: #00B9E6;
+	line-height: 1.3;
+	margin-top: 23px;
+}
+.list{
+	font-size: 14.3px;
+	font-family: "Roboto-Medium";
+	color: #606060;
+	line-height: 1.6;
+	border-bottom: 1px #c6c6c6 solid;
+	padding-bottom: 5px;
+	padding-top: 11px;
+}
+.list:last-of-type{
+	border:none;
+}
+.icon{
+	margin: 2px 22px 0 -1px;
+	float: left;
+}
+.delete{
+	float: right;
+}
+.button{
+	float: right;
+	background-color: #ffffff;
+	border:none;
+	font-size: 14.4px;
+  	font-family: "Roboto-Medium";
+  	color: #00B9E6;
+  	margin-right: 25px;
+ 	margin-top: 22px;
+ 	cursor: pointer;
+}
+.button:focus{
+	outline: none;
+}
+.remove1, .remove2, .remove3{
+	display: none;
+}
