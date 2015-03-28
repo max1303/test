@@ -10,22 +10,22 @@
 <body>
 	<div class="content-wrapper swiper-container">
 		<header class="head-test">
-			<!-- <h1></h1> -->
-			<span class="your">YOUR</span>
-			<span class="test">TEST</span>
+			<h1>
+				<span class="your">YOUR</span>
+				<span class="test">TEST</span>
+			</h1>
 		</header>
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
-				<div class="colums">
+				<section class="colums">
 					<header class="colum1-header">
 						<img src="images/head-icon1.png" alt="">
-						<!-- <h3></h3> -->
-						<span class="documents">Documents</span>
+						<h3 class="documents">Documents</h3> 
 					</header>
 					<div class="colum-content col-cont1">
 						<ul class="checkbox">
-							<li><input id="check1" type="checkbox" name="check1" value="check1">
-							<label for="check1"><span class="article-name">Article Name</span><br><span class="authors">Authors, name of edition,publishing year,  (more info?)</span></label>
+							<li><input id="check1" type="checkbox" name="check1" value="check1" >
+							<label for="check1" class="ckb"><span class="article-name">Article Name</span><br><span class="authors">Authors, name of edition,publishing year,  (more info?)</span></label>
 							</li>
 							<li>
 							<input id="check2" type="checkbox" name="check1" value="check2">
@@ -68,13 +68,12 @@
 					<footer class="footer1">
 						<a class="add1" href="">ADD ALL</a>
 						<a class="remove1" href="">REMOVE ALL</a>
-					</footer><!-- <section></section> -->
-				</div>
-				<div class="colums"><!-- <section></section> -->
+					</footer>
+				</section>
+				<section class="colums">
 					<header class="colum2-header">
 						<img src="images/head-icon2.png" alt="">
-						<!-- <h3></h3> -->
-						<span class="links">Links</span>
+						<h3 class="links">Links</h3>
 					</header>
 					<div class="colum-content col-cont2">
 						<ul class="checkbox">
@@ -123,12 +122,11 @@
 						<a class="add2" href="">ADD ALL</a>
 						<a class="remove2" href="">REMOVE ALL</a>
 					</footer>
-				</div>
-				<div class="colums"><!-- <section></section> -->
+				</section>
+				<section class="colums">
 					<header class="colum3-header">
 						<img src="images/head-icon3.png" alt="">
-						<!-- <h3></h3> -->
-						<span class="science-lab">Science Lab</span>
+						<h3 class="science-lab">Science Lab</h3>
 					</header>
 					<div class="colum-content col-cont3">
 						<ul class="checkbox">
@@ -157,7 +155,7 @@
 						<a class="add3" href="">ADD ALL</a>
 						<a class="remove3" href="">REMOVE ALL</a>
 					</footer>
-				</div>
+				</section>
 			</div>
 			<div class="swiper-slide">
 				<div class="send-wrapper">
@@ -256,13 +254,20 @@
      	$(".email-focus").css('color','#BDBDBD');
     });
 
-    $("#btn").click(function(){
+    
+	listval = [];
+	$('.ckb').unbind('click').bind('click', function() {
+    if ($('input[type=checkbox]').attr('checked')) {
+        listval.push($('input[type=checkbox]').val());
+    }
+	});
+	 $("#btn").click(function(){
 		var name = $("#name").val();
 		var email = $("#email").val();
 		var message = $("#message").val();
-	    alert("Name: " + name + "Email: " + email +  "Message: " + message);    
+	    alert("Name: " + name + "Email: " + email +  "Message: " + message + listval);    
 	});
-	});
+		});
     </script>
    
 </body>
