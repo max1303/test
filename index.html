@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"> -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/swiper.min.css">
   <title>Document</title>
@@ -17,35 +16,38 @@
     </header>
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <section class="select-list">
-          <header class="column-documents-header">
+        <section class="select-list documents">
+          <header>
             <img src="images/documents-logo.png" alt="Documents logo">
-            <h2 class="documents">Documents</h2> 
+            <h2>Documents</h2> 
           </header>
-            <ul class="list column-content col-cont-documents"></ul>
-          <footer class="footer-documents">
+          <ul>
+          </ul>
+          <footer>
             <input class="button add-documents" type="button" value="ADD ALL">
             <input class="button remove-documents" type="button" value="REMOVE ALL">
           </footer>
         </section>
-        <section class="select-list">
-          <header class="column-links-header">
+        <section class="select-list links">
+          <header>
             <img src="images/links-logo.png" alt="Links-logo">
-            <h2 class="links">Links</h2>
+            <h2>Links</h2>
           </header>
-            <ul class="list column-content col-cont-links"></ul>
-          <footer class="footer-links">
+          <ul>
+          </ul>
+          <footer>
             <input class="button add-links" type="button" value="ADD ALL">
 						<input class="button remove-links" type="button" value="REMOVE ALL">
           </footer>
         </section>
-        <section class="select-list">
-          <header class="column-lab-header">
+        <section class="select-list labs">
+          <header>
             <img src="images/labs-logo.png" alt="Lab-logo">
-            <h2 class="science-lab">Science Lab</h2>
+            <h2>Science Lab</h2>
           </header>
-            <ul class="list column-content col-cont-lab"></ul>
-          <footer class="footer-lab">
+          <ul>
+          </ul>
+          <footer>
             <input class="button add-lab" type="button" value="ADD ALL">
 						<input class="button remove-lab" type="button" value="REMOVE ALL">
           </footer>
@@ -53,28 +55,31 @@
       </div>
       <div class="swiper-slide">
         <div class="send-wrapper">
-          <header>
-            <img src="images/send-logo.png" alt="Send-logo">
-          </header>
-          <div class="send-content">
-            <form id='send'>
-              <div class="name">
-                <label for="name"><span class="name-focus">Name</span></label>
-                <input id="name" name="name" placeholder="User Name" type="text">
-              </div>
-              <div class="email">
-                <label for="email"><span class="email-focus">Email</span></label>
-                <input type="e-mail" name="mail" id="email" placeholder="useremail@mail.com" >
-              </div>
-                <input class="message" id="message" placeholder="Message text..." type="text" name="text">
-	            <p class="attached-links"><span class='attach-length'>0</span> attached links</p>
-	            <ul class="attached-list"></ul>
+		      <header>
+		        <img src="images/send-logo.png" alt="Send-logo" >
+		      </header>
+	        <form id="send" >
+	        	<div class="user-info">
+		          <div class="name">
+		            <label for="name"><span class="name-focus">Name</span></label>
+		            <input id="name" class="send-input" name="name" placeholder="User Name" type="text">
+		          </div>
+		          <div class="email">
+		            <label for="email"><span class="email-focus">Email</span></label>
+		            <input class="send-input" type="e-mail" name="mail" id="email" placeholder="useremail@mail.com" >
+		          </div>
+		        	<input class="send-input message" id="message" placeholder="Message text..." type="text" name="text">
+	          </div>
+	          <div class="attachments">
+		          <p><span class='attachments-count'>0</span> attached links</p>
+		          <ul>
+		          </ul>
 	          </div>
 	          <footer>
-              <input class="button" name="submit" type="button" value="SEND">
-            </form>
-          </footer>
-        </div>
+	            <input class="button" name="submit" type="button" value="SEND">
+	        	</footer>
+	      	</form>
+      	</div>
       </div>
     </div>
     <div class="swiper-pagination"></div>
