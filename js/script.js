@@ -37,7 +37,7 @@ var lists = {
       description: 'First \'Hello world\' lab.'
     },
     {
-      title: 'Animations ',
+      title: 'Animations',
       description: 'Animations using CSS'
     },
     {
@@ -47,20 +47,100 @@ var lists = {
   ]
 };
 
-(function(){
+var attachments = [];
+
+(function() {
+
   var elDocumentsList = document.querySelector('.documents ul'),
       elLinksList = document.querySelector('.links ul'),
-      elLabsList = document.querySelector('.labs ul');
+      elLabsList = document.querySelector('.labs ul'),
+      elAttachmentsList = document.querySelector('.attachments ul');
+
+  initSelectList(elDocumentsList, 'documents');
+  initSelectList(elLinksList, 'links');
+  initSelectList(elLabsList, 'labs');
+
+  function initSelectList(elList, listName) {
+    var elListItem;
+
+    for (var i in lists[listName]) {
+      elListItem = createListItem(listName, i);
+      elList.appendChild(elListItem);
+    }
+  }
+
+  function createListItem(listName, index) {
+    var item = lists[listName][index],
+        listItemId = 'lists-' + listName + '-' + index + '';
+
+    var listItemTempate = '<input id="' + listItemId + '" type="checkbox">' +
+                          '<label for="' + listItemId + '">' +
+                            '<p class="article-name">'+ item.title +'</p>' +
+                            '<p class="authors">'+ item.description +'</p>'+
+                          '</label>';
+
+    var elListItem = document.createElement('li');
+    elListItem.innerHTML = listItemTempate;
+
+    var elCheckbox = elListItem.querySelector('input[type="checkbox"]');
+    elCheckbox.addEventListener('change', getCheckedHandler(listName, index));
+
+    return elListItem;
+  }
+
+  function getCheckedHandler(listName, index) {
+    return function(event) {
+      if(event.target.checked) {
+          addAttachment(listName, index)
+      } else {
+          removeAttachment(listName, index)
+      }
+    }
+  }
+
+  function addAttachment(listName, index){
+    
+      var item = lists[listName][index],
+          attachmentsItemId = listName + '-' + index;
+
+      attachments.push(item);
+
+      elAttachmentsList.appendChild(createAttachmentsItem(listName, index));
+
+      // FIXME: update attached count
+      // FIXME: add handler for delete button
+  }
+
+  function createAttachmentsItem(listName, index) {
+    var item = lists[listName][index],
+        attachmentsItemId = 'attachments-' + listName + '-' + index + '';
+
+    var attachmentsItemTempate = '<p class="article-name">'+ item.title +'</p>' +
+                                 '<p class="authors">'+ item.description +'</p>';
+
+    var elAttachmentsItem = document.createElement('li');
+    elAttachmentsItem.id = attachmentsItemId;
+    elAttachmentsItem.innerHTML = attachmentsItemTempate;
+
+    // FIXME: create delete button
+
+    // var elCheckbox = elListItem.querySelector('input[type="checkbox"]');
+    // elCheckbox.addEventListener('change', getCheckedHandler(listName, index));
+
+    return elAttachmentsItem;
+  }
+
 })();
-function getItem(data, index, index2){
-    return '<li>' +
-              '<input id="article'+ index +'_'+ index2+'" type="checkbox" name="check2">' +
-              '<label for="article'+ index +'_'+ index2+'">' +
-              '<p class="article-name">'+ data.title +'</p>' +
-              '<p class="authors">'+ data.description +'</p>'+
-              '</label>' +
-           '</li>'
-}
+
+// function getItem(data, index, index2){
+//     return '<li>' +
+//               '<input id="article'+ index +'_'+ index2+'" type="checkbox" name="check2">' +
+//               '<label for="article'+ index +'_'+ index2+'">' +
+//               '<p class="article-name">'+ data.title +'</p>' +
+//               '<p class="authors">'+ data.description +'</p>'+
+//               '</label>' +
+//            '</li>'
+// }
 
 
 // var attachments = [], articlesInput = [];

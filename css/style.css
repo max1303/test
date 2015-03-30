@@ -23,6 +23,9 @@ li{
 body{
   background-color: #898;
 }
+::-webkit-scrollbar {
+  width: 4px;
+}
 .content-wrapper{
   width: 1024px;
   height: 768px;
@@ -76,11 +79,6 @@ body{
 .select-list:last-of-type{
   margin-left: 26px;
 }
-.select-list header{
-  border-radius: 4px 4px 0 0;
-  height: 141px;
-  position: relative;
-}
 .documents header{
   background-color: #DB4437;
 }
@@ -90,20 +88,17 @@ body{
 .labs header{
   background-color: #0F9D58;
 }
-.select-list img{
+.select-list header{
+  border-radius: 4px 4px 0 0;
+  height: 141px;
+  position: relative;
+}
+.select-list header img{
   position: relative;
   top: 43px;
   left: 115px;
 }
-/*.column-lab-header img{
-  left: 101px;
-}*/
-.select-list footer a, .article-name, .authors{
-  -moz-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
-  -webkit-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
-  position: relative;
-}
-.select-list h2{
+.select-list header h2{
   font-size: 18px;
   font-weight: normal;
   color: #FFFFFF;
@@ -111,25 +106,34 @@ body{
   margin-top: 66px;
   margin-left: 24px;
 }
-.science-lab{
-  margin-left: 21px;
+.select-list ul{
+  color: #606060;
+  line-height: 1.6;
+  height: 342px;
+  padding-left: 15px;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  padding-top: 11px;
 }
-
-.attachments ul{
-  height: 198px;
-  padding: 0 30px 0 36px;
+.article-name, .authors{
+    margin-left: 22px;
+    width: 254px;
+}
+.article-name{
+  font-family: "Roboto-Medium";
+  font-size: 13px;
+  color: #8B8B8B;
+  line-height: 1.4;
+}
+.authors{
+  font-size: 12px;
+  color: #B2B2B2;
+  line-height: 1;
+  float: right;
 }
 .select-list ul, .attachments ul{
   overflow: auto;
   overflow-y: scroll;
-}
-.select-list ul{
-  height: 342px;
-  padding-left: 17px;
-  margin-top: 17px;
-}
-::-webkit-scrollbar {
-  width: 4px;
 }
 .documents ul::-webkit-scrollbar-thumb{
   background: #db4437; 
@@ -140,8 +144,54 @@ body{
 .labs ul::-webkit-scrollbar-thumb{
   background: #0f9d58; 
 }
-.attachments ul::-webkit-scrollbar-thumb{
-  background: #00b9e6; 
+.select-list ul li{
+  height: 45px;
+  margin-bottom: 10px;
+}
+.select-list ul input[type="checkbox"], .remove-documents, .remove-links, .remove-lab{
+  display: none;
+}
+.documents ul input[type=checkbox]:checked + label:before{
+  background-color: #db4437;
+}
+.links ul input[type=checkbox]:checked + label:before{
+  background-color: #00b9e6;
+}
+.labs ul input[type=checkbox]:checked + label:before{
+  background-color: #0f9d58;
+}
+input[type=checkbox]:checked + label:before{
+  content: "\2713";
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+  font-size: 15px;
+  color: #f3f3f3;
+  text-align: center;
+  line-height: 15px;
+}
+.select-list label, .button, .del{
+  cursor: pointer;
+}
+.select-list label, .select-list label:before {
+  display: inline-block;
+}
+.select-list label:before{
+  border-radius: 1px;
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1px #8b8b8b solid;
+  margin-top: 6px;
+  float: left;
+  background-color: #ffffff;
+  box-shadow: inset 0px 0px 1px 1px #a0a0a0;
+}
+.select-list footer a, .article-name, .authors{
+  -moz-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
+  -webkit-transform: matrix( 0.9, 0, 0, 0.9, 0, 0);
+  position: relative;
+}
+.science-lab{
+  margin-left: 21px;
 }
 footer{
   clear: both;
@@ -164,63 +214,6 @@ footer{
   float: right;
   margin: 21px 21px 0 0;
 }
-.select-list ul input[type="checkbox"], .remove-documents, .remove-links, .remove-lab{
-  display: none;
-}
-.select-list li{
-  height: 45px;
-  margin-bottom: 9px;
-}
-.select-list label, .button, .del{
-  cursor: pointer;
-}
-.select-list label, .select-list label:before {
-  display: inline-block;
-}
-.select-list label:before{
-  border-radius: 1px;
-  content: "";
-  width: 14px;
-  height: 14px;
-  border: 1px #8b8b8b solid;
-  margin-top: 6px;
-  float: left;
-  background-color: #ffffff;
-  box-shadow: inset 0px 0px 1px 1px #a0a0a0;
-}
-input[type=checkbox]:checked + label:before{
-  content: "\2713";
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-  font-size: 15px;
-  color: #f3f3f3;
-  text-align: center;
-  line-height: 15px;
-}
-.col-cont-documents input[type=checkbox]:checked + label:before{
-  background-color: #db4437;
-}
-.col-cont-links input[type=checkbox]:checked + label:before{
-  background-color: #00b9e6;
-}
-.col-cont-lab input[type=checkbox]:checked + label:before{
-  background-color: #0f9d58;
-}
-.article-name{
-  font-family: "Roboto-Medium";
-  font-size: 14px;
-  color: #8B8B8B;
-  line-height: 1.4;
-  width: 255px;
-  margin-left: 24px;
-}
-.authors{
-  font-size: 12px;
-  color: #B2B2B2;
-  line-height: 1;
-  width: 254px;
-  margin-left: 25px;
-  float: right;
-}
 .send-wrapper{
   margin: 0 145px;
   width: 724px;
@@ -238,8 +231,6 @@ input[type=checkbox]:checked + label:before{
 }
 .user-info{
   padding:22px 30px 0 36px;
-  /*height: 413px;
-  border-bottom: 1px #dcdcdc solid;*/
 }
 .user-info::-webkit-scrollbar-thumb{
   background: #00b9e6; 
@@ -252,11 +243,7 @@ input[type=checkbox]:checked + label:before{
   font-size: 16px;
   color: #4C4C4C;
   line-height: 1.4;
-  padding-bottom: 8px; 
-}
-.name input, .email input{
-  height: 17px;
-  width: 305px;
+  padding-bottom: 7px; 
 }
 .button:focus, .user-info .send-input:focus{
   outline: none;
@@ -264,15 +251,20 @@ input[type=checkbox]:checked + label:before{
 .user-info .send-input:focus{
   border-bottom: 3px #00b9e6 solid;
 }
+.name input, .email input{
+  height: 18px;
+  width: 305px;
+}
 .name{
   float: left;
-    width: 304px;
+  width: 304px;
 }
 .delete, .button, .email{
   float: right;
 }
 .email{
   width: 304px;
+  margin-right: 4px;
 }
 .name span, .email span{
   font-size: 12px;
@@ -281,7 +273,14 @@ input[type=checkbox]:checked + label:before{
 }
 .message {
   width: 100%;
-  margin-top: 25px;
+  margin-top: 28px;
+}
+.attachments ul{
+  height: 198px;
+  padding: 0 30px 0 36px;
+}
+.attachments ul::-webkit-scrollbar-thumb{
+  background: #00b9e6; 
 }
 .attachments > p {
   font-size: 18px;
@@ -290,22 +289,14 @@ input[type=checkbox]:checked + label:before{
   margin-top: 23px;
   padding: 0 30px 0 36px;
 }
-.select-list ul{
-  font-size: 14px;
-  color: #606060;
-  line-height: 1.6;
-  border-bottom: 1px #c6c6c6 solid;
-  padding-bottom: 5px;
-  padding-top: 11px;
-}
-.icon{
-  margin: 2px 22px 0 -1px;
-  float: left;
-}
 .button{
   background-color: #ffffff;
   font-size: 14px;
   color: #00B9E6;
   margin-right: 24px;
   margin-top: 23px;
+}
+.icon{
+  margin: 2px 22px 0 -1px;
+  float: left;
 }
