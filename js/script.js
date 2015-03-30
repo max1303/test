@@ -54,12 +54,100 @@ var attachments = [];
   var elDocumentsList = document.querySelector('.documents ul'),
       elLinksList = document.querySelector('.links ul'),
       elLabsList = document.querySelector('.labs ul'),
+
       elAttachmentsList = document.querySelector('.attachments ul'),
-      elAttachmentsCount = document.querySelector('.attachments-count');
+      elAttachmentsCount = document.querySelector('.attachments-count'),
+
+      elAllDocumentsCheckboxes,
+      elAllLinksCheckboxes,
+      elAllLabsCheckboxes,
+
+      elAddAllDocumentsBtn = document.querySelector('.add-documents'),
+      elRemoveAllDocumentsBtn = document.querySelector('.remove-documents'),
+      elAddAllLinksBtn = document.querySelector('.add-links'),
+      elRemoveAllLinksBtn = document.querySelector('.remove-links'),
+      elAddAllLabsBtn = document.querySelector('.add-labs'),
+      elRemoveAllLabsBtn = document.querySelector('.remove-labs'),
+
+      form = document.querySelector('#send');
 
   initSelectList(elDocumentsList, 'documents');
   initSelectList(elLinksList, 'links');
   initSelectList(elLabsList, 'labs');
+
+  elAllDocumentsCheckboxes = elDocumentsList.querySelectorAll('input[type="checkbox"]');
+  elAllLinksCheckboxes = elLinksList.querySelectorAll('input[type="checkbox"]');
+  elAllLabsCheckboxes = elLabsList.querySelectorAll('input[type="checkbox"]');
+
+  form.submit.addEventListener('click', function(event){
+    var log = {
+        name: form.name.value,
+        email: form.mail.value,
+        text: form.text.value,
+        attached: attachments
+    }
+    alert(JSON.stringify(log))
+  });
+
+  elAddAllDocumentsBtn.addEventListener('click', function() {
+
+    elAddAllDocumentsBtn.style.display = 'none';
+    elRemoveAllDocumentsBtn.style.display = 'inline';
+
+    getCheckedAllHandler('documents', elAllDocumentsCheckboxes, true)();
+  });
+
+  elRemoveAllDocumentsBtn.addEventListener('click', function() {
+
+    elRemoveAllDocumentsBtn.style.display = 'none';
+    elAddAllDocumentsBtn.style.display = 'inline';
+
+    getCheckedAllHandler('documents', elAllDocumentsCheckboxes, false)();
+  });
+
+  elAddAllLinksBtn.addEventListener('click', function() {
+
+    elAddAllLinksBtn.style.display = 'none';
+    elRemoveAllLinksBtn.style.display = 'inline';
+
+    getCheckedAllHandler('links', elAllLinksCheckboxes, true)();
+  });
+
+  elRemoveAllLinksBtn.addEventListener('click', function() {
+
+    elRemoveAllLinksBtn.style.display = 'none';
+    elAddAllLinksBtn.style.display = 'inline';
+
+    getCheckedAllHandler('links', elAllLinksCheckboxes, false)();
+  });
+
+  elAddAllLabsBtn.addEventListener('click', function() {
+
+    elAddAllLabsBtn.style.display = 'none';
+    elRemoveAllLabsBtn.style.display = 'inline';
+
+    getCheckedAllHandler('labs', elAllLabsCheckboxes, true)();
+  });
+
+  elRemoveAllLabsBtn.addEventListener('click', function() {
+
+    elRemoveAllLabsBtn.style.display = 'none';
+    elAddAllLabsBtn.style.display = 'inline';
+
+    getCheckedAllHandler('labs', elAllLabsCheckboxes, false)();
+  });
+
+  function getCheckedAllHandler(listName, checkboxes, checked) {
+    return function() {
+      for (var i in checkboxes) {
+        checkboxes[i].checked = checked;
+      }
+
+      for (var i in lists[listName]) {
+        onItemChecked(listName, i, checked);
+      }
+    }
+  }
 
   function initSelectList(elList, listName) {
     var elListItem;
@@ -91,15 +179,22 @@ var attachments = [];
 
   function getCheckedHandler(listName, index) {
     return function(event) {
-      var item = lists[listName][index],
-          attachmentsItemId = listName + '-' + index;
+      onItemChecked(listName, index, event.target.checked);
+    }
+  }
 
-      if(event.target.checked) {
+  function onItemChecked(listName, index, checked) {
+    var item = lists[listName][index],
+        attachmentsItemId = 'attachments-' + listName + '-' + index,
+        alreadyAttached = attachments.indexOf(item) != -1;
+
+      if(checked) {
+        if (!alreadyAttached)
           addAttachment(attachmentsItemId, item)
       } else {
+        if (alreadyAttached)
           removeAttachment(attachmentsItemId, item)
       }
-    }
   }
 
   function addAttachment(attachmentsItemId, item) {
@@ -119,7 +214,7 @@ var attachments = [];
 
     elAttachmentsItem.parentNode.removeChild(elAttachmentsItem);
 
-    attachments.slice(attachments.indexOf(item));
+    attachments.splice(attachments.indexOf(item), 1);
     
     updateAttachmentsCount();
   }
@@ -145,113 +240,3 @@ var attachments = [];
   }
 
 })();
-
-// function getItem(data, index, index2){
-//     return '<li>' +
-//               '<input id="article'+ index +'_'+ index2+'" type="checkbox" name="check2">' +
-//               '<label for="article'+ index +'_'+ index2+'">' +
-//               '<p class="article-name">'+ data.title +'</p>' +
-//               '<p class="authors">'+ data.description +'</p>'+
-//               '</label>' +
-//            '</li>'
-// }
-
-
-// var attachments = [], articlesInput = [];
-// var renderLists = document.querySelectorAll('.select-list ul'),
-//     attachedList = document.querySelector('.attachments ul'),
-//     attachedLength = document.querySelector('.attachments-count'),
-//     form = document.querySelector('#send');
-
-//  document.querySelector('.add-documents').onclick = function(){
-//      for(var i=0; i< list.documents.length; i++){
-
-//      }
-//  }
-// console.dir(form)
-// form.submit.addEventListener('click', function(event){
-//     var log = {
-//         name: form.name.value,
-//         email: form.mail.value,
-//         text: form.text.value,
-//         attached: attachments
-//     }
-//     alert(JSON.stringify(log))
-// });
-
-// function updateLenght(){
-//     attachedLength.innerText = attachments.length
-// }
-
-// function getItem(data, index, index2){
-//     return '<li>' +
-//               '<input id="article'+ index +'_'+ index2+'" type="checkbox" name="check2">' +
-//               '<label for="article'+ index +'_'+ index2+'">' +
-//               '<p class="article-name">'+ data.title +'</p>' +
-//               '<p class="authors">'+ data.description +'</p>'+
-//               '</label>' +
-//            '</li>'
-// }
-// function getAttach(data){
-//     return '<li class="'+ data.listName +'" data-id="'+ data.id +'">' +
-//               '<p class="article-name">'+ data.title +'</p>' +
-//               '<p class="authors">'+ data.description +'</p>'+
-//            '</li>';
-// }
-// function addAttach(attach){
-//     var button = document.createElement('button');
-//     button.className = 'remove';
-//     button.innerText = 'remove';
-//     attachments.push(attach);
-//     attachedList.innerHTML += getAttach(attach);
-//     updateLenght();
-//     // attachedList.querySelector('li[data-id='+attach.id+']').appendChild(button);
-//     // button.addEventListener('click', function(event){
-//     //     removeAttach(attach);
-//     // });   
-// }
-// function removeAttach(attach){
-//     var index, 
-//     element = document.querySelector('#'+ attach.id+''),
-//     attachElement = attachedList.querySelector('[data-id='+attach.id+']');
-//     for(var i=0; i< attachments.length; i++){
-//         if(attachments[i].id == attach.id){
-//             index = i;
-//         }
-//     }
-//     element.checked = false;
-//     attachments.splice(index, 1);
-//     attachedList.removeChild(attachElement)
-//     updateLenght()
-// }
-
-
-// Object.keys(lists).forEach(function(arr, arrindex){
-//     lists[arr].forEach(function(article, index){
-//         article.id = 'article'+arrindex+'_'+index;
-//         renderLists[index].innerHTML += getItem(article, index, arrindex);
-//     });
-// });
-
-// for(var i=0; i< renderLists.length; i++){
-//     articlesInput.push(renderLists[i].querySelectorAll('li input'));
-// }
-
-// articlesInput.forEach(function(collection, index){
-//     for(var j=0; j< collection.length; j++){
-//        (function(j, index){
-//             collection[j].addEventListener('change', function(event){
-//                 console.log(attachedList.children)
-//                 var attach = lists[Object.keys(lists)[index]][j];
-//                     attach.listName = Object.keys(lists)[index];
-//                 console.log(attach)
-//                 if(event.target.checked){
-//                     addAttach(attach)
-//                 }else{
-//                     removeAttach(attach)
-//                 }
-//             });
-//         })(j, index);
-//     }
-// })
-// console.log(lists)

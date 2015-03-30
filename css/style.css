@@ -109,11 +109,9 @@ body{
 .select-list ul{
   color: #606060;
   line-height: 1.6;
-  height: 342px;
-  padding-left: 15px;
+  height: 350px;
   margin-top: 18px;
-  padding-bottom: 5px;
-  padding-top: 11px;
+  padding: 6px 0 0px 17px;
 }
 .article-name, .authors{
     margin-left: 22px;
@@ -268,7 +266,6 @@ footer{
 }
 .name span, .email span{
   font-size: 12px;
-  color: #BDBDBD;
   line-height: 1.9;
 }
 .message {
@@ -278,6 +275,18 @@ footer{
 .attachments ul{
   height: 198px;
   padding: 0 30px 0 36px;
+}
+.attachments ul li{
+  font-size: 14px;
+  font-family: "Roboto-Medium";
+  color: #606060;
+  line-height: 1.6;
+  border-bottom: 1px #c6c6c6 solid;
+  padding-bottom: 5px;
+  padding-top: 11px;
+}
+.attachments ul li:last-of-type{
+  border:none;
 }
 .attachments ul::-webkit-scrollbar-thumb{
   background: #00b9e6; 
@@ -299,4 +308,10 @@ footer{
 .icon{
   margin: 2px 22px 0 -1px;
   float: left;
+}
+.focus {
+  color: #00B9E6;
+}
+.blur{
+  color: #BDBDBD;
 }
