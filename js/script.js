@@ -54,7 +54,8 @@ var attachments = [];
   var elDocumentsList = document.querySelector('.documents ul'),
       elLinksList = document.querySelector('.links ul'),
       elLabsList = document.querySelector('.labs ul'),
-      elAttachmentsList = document.querySelector('.attachments ul');
+      elAttachmentsList = document.querySelector('.attachments ul'),
+      elAttachmentsCount = document.querySelector('.attachments-count');
 
   initSelectList(elDocumentsList, 'documents');
   initSelectList(elLinksList, 'links');
@@ -75,8 +76,8 @@ var attachments = [];
 
     var listItemTempate = '<input id="' + listItemId + '" type="checkbox">' +
                           '<label for="' + listItemId + '">' +
-                            '<p class="article-name">'+ item.title +'</p>' +
-                            '<p class="authors">'+ item.description +'</p>'+
+                            '<span class="article-name">'+ item.title +'</span>' +
+                            '<span class="authors">'+ item.description +'</span>'+
                           '</label>';
 
     var elListItem = document.createElement('li');
@@ -90,31 +91,40 @@ var attachments = [];
 
   function getCheckedHandler(listName, index) {
     return function(event) {
+      var item = lists[listName][index],
+          attachmentsItemId = listName + '-' + index;
+
       if(event.target.checked) {
-          addAttachment(listName, index)
+          addAttachment(attachmentsItemId, item)
       } else {
-          removeAttachment(listName, index)
+          removeAttachment(attachmentsItemId, item)
       }
     }
   }
 
-  function addAttachment(listName, index){
+  function addAttachment(attachmentsItemId, item) {
+    var elAttachmentsItem = createAttachmentsItem(attachmentsItemId, item);
+
+    attachments.push(item);
+
+    elAttachmentsList.appendChild(elAttachmentsItem);
+
+    // FIXME: add handler for delete button
     
-      var item = lists[listName][index],
-          attachmentsItemId = listName + '-' + index;
-
-      attachments.push(item);
-
-      elAttachmentsList.appendChild(createAttachmentsItem(listName, index));
-
-      // FIXME: update attached count
-      // FIXME: add handler for delete button
+    updateAttachmentsCount();
   }
 
-  function createAttachmentsItem(listName, index) {
-    var item = lists[listName][index],
-        attachmentsItemId = 'attachments-' + listName + '-' + index + '';
+  function removeAttachment(attachmentsItemId, item) {
+    var elAttachmentsItem = elAttachmentsList.querySelector('#' + attachmentsItemId);
 
+    elAttachmentsItem.parentNode.removeChild(elAttachmentsItem);
+
+    attachments.slice(attachments.indexOf(item));
+    
+    updateAttachmentsCount();
+  }
+
+  function createAttachmentsItem(attachmentsItemId, item) {
     var attachmentsItemTempate = '<p class="article-name">'+ item.title +'</p>' +
                                  '<p class="authors">'+ item.description +'</p>';
 
@@ -128,6 +138,10 @@ var attachments = [];
     // elCheckbox.addEventListener('change', getCheckedHandler(listName, index));
 
     return elAttachmentsItem;
+  }
+
+  function updateAttachmentsCount() {
+    elAttachmentsCount.innerText = attachments.length;
   }
 
 })();
