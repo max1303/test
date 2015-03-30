@@ -164,7 +164,7 @@ var attachments = [];
 
     var listItemTempate = '<input id="' + listItemId + '" type="checkbox">' +
                           '<label for="' + listItemId + '">' +
-                            '<span class="article-name">'+ item.title +'</span>' +
+                            '<p class="article-name">'+ item.title +'</p>' +
                             '<span class="authors">'+ item.description +'</span>'+
                           '</label>';
 
@@ -199,13 +199,8 @@ var attachments = [];
 
   function addAttachment(attachmentsItemId, item) {
     var elAttachmentsItem = createAttachmentsItem(attachmentsItemId, item);
-
     attachments.push(item);
-
-    elAttachmentsList.appendChild(elAttachmentsItem);
-
-    // FIXME: add handler for delete button
-    
+    elAttachmentsList.appendChild(elAttachmentsItem); 
     updateAttachmentsCount();
   }
 
@@ -220,17 +215,12 @@ var attachments = [];
   }
 
   function createAttachmentsItem(attachmentsItemId, item) {
-    var attachmentsItemTempate = '<p class="article-name">'+ item.title +'</p>' +
-                                 '<p class="authors">'+ item.description +'</p>';
+    var attachmentsItemTempate = '<span>'+ item.title + ', '+'</span>' +
+                                 '<span>'+ item.description +'</span>';
 
     var elAttachmentsItem = document.createElement('li');
     elAttachmentsItem.id = attachmentsItemId;
     elAttachmentsItem.innerHTML = attachmentsItemTempate;
-
-    // FIXME: create delete button
-
-    // var elCheckbox = elListItem.querySelector('input[type="checkbox"]');
-    // elCheckbox.addEventListener('change', getCheckedHandler(listName, index));
 
     return elAttachmentsItem;
   }
